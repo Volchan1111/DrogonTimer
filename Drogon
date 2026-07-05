@@ -1,0 +1,21 @@
+name: Dragon Respawn Timer
+
+on:
+  schedule:
+    - cron: '55 12,14,16,18,20,22,0,2,4,6,8,10 * * *'
+  workflow_dispatch:
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          echo "🐉 Дракон!"
+          echo "Время: $(date '+%H:%M МСК')"
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d '{"content": "@everyone 🐉 Дрогон реснится через 5 минут!"}' \
+            $DISCORD_WEBHOOK_URL
