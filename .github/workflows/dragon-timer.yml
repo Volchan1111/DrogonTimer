@@ -17,9 +17,7 @@ jobs:
         run: |
           echo "🐉 Отправка уведомления о драконе!"
           echo "Время МСК: $(date '+%Y-%m-%d %H:%M:%S')"
-          
           curl -H "Content-Type: application/json" \
-               -X POST \
-               -d '{"content": "@everyone 🐉 Внимание! Дрогон реснится через 5 минут!"}' \
-               $DISCORD_WEBHOOK_URL
- 
+            -X POST \
+            -d '{"content": "@everyone 🐉 Внимание! Дрогон реснится через 5 минут!"}' \
+            $DISCORD_WEBHOOK_URL
