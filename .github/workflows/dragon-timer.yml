@@ -2,6 +2,8 @@ name: Dragon Respawn Timer
 
 on:
   schedule:
+    # Москва (UTC+3): за 5 минут до каждого респауна
+    # 15:55 МСК = 12:55 UTC
     - cron: '55 12,14,16,18,20,22,0,2,4,6,8,10 * * *'
   workflow_dispatch:
 
@@ -13,7 +15,10 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
+          echo "🐉 Отправка уведомления о драконе!"
+          echo "Время МСК: $(date '+%Y-%m-%d %H:%M:%S')"
+          
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{"content": "🐉 Внимание! Дрогон реснится через 5 минут!"}' \
+               -d '{"content": "@everyone 🐉 Внимание! Дрогон реснится через 5 минут!"}' \
                $DISCORD_WEBHOOK_URL
