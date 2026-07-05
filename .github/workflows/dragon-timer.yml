@@ -19,3 +19,4 @@ jobs:
                -X POST \
                -d '{"content": "@everyone 🐉 Внимание! Дрогон реснится через 5 минут! "}' \
                $DISCORD_WEBHOOK_URL
+ 
